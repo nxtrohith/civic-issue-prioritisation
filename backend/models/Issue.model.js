@@ -14,6 +14,7 @@ const issueSchema = new mongoose.Schema(
     imageUrl: { type: String, trim: true },
     predictedIssueType: { type: String, trim: true },
     severityScore: { type: Number, min: 0, max: 10 },
+    impactScope: {type: String, enum: ["Individual", "Locality", "Ward", "City-wide"]},
     suggestedDepartment: {
       type: String,
       enum: ["Electrical", "Plumbing", "Civil", "Housekeeping", "Lift", "Security", "Other"]
@@ -23,6 +24,10 @@ const issueSchema = new mongoose.Schema(
       type: String,
       enum: ["reported", "approved", "in_progress", "resolved"],
       default: "reported"
+    },
+    estimatedResolution: {
+      type: String,
+      enum: ["Same Day", "1-3 Days", "1 Week", "2-4 Weeks", "Long-term Project"]
     }
   },
   {
